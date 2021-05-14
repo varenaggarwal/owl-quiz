@@ -4,11 +4,15 @@ import { tennisQuiz } from "../data/tennisQuiz";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Heading, useToast } from "@chakra-ui/react";
 
 export function QuestionAsker() {
   const [isAnswered, setIsAnswered] = useState<Boolean>(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const { state, dispatch } = useQuizState();
+  const toast = useToast();
+  const navigate = useNavigate();
 
   const getQuestion = (questions: Question[], questionNumber) => {
     return questions.find(
@@ -23,9 +27,19 @@ export function QuestionAsker() {
 
   const handleNextQuestion = () => {
     if (state.currentQuestion < state.totalQuestions) {
-      setIsAnswered(false);
-      setSelectedOption(null);
-      dispatch({ type: "NEXT_QUESTION" });
+      if (isAnswered) {
+        setIsAnswered(false);
+        setSelectedOption(null);
+        dispatch({ type: "NEXT_QUESTION" });
+      } else {
+        toast({
+          title: "Please answer the Question",
+          status: "warning",
+          isClosable: true,
+        });
+      }
+    } else {
+      navigate(`/quiz/${state.quizName}/result`);
     }
   };
 
@@ -63,8 +77,10 @@ export function QuestionAsker() {
   return (
     <div>
       <Header />
-      <Box>
-        {currentQuestion.question}
+      <Box colour="blue" borderWidth="1px" borderRadius="lg" overflow="hidden">
+        <Heading as="h2" size="lg">
+          {currentQuestion.question}
+        </Heading>
         <h1>Points: {currentQuestion.points}</h1>
         <h1>
           NegativePoints:
@@ -85,7 +101,11 @@ export function QuestionAsker() {
       </SimpleGrid>
       <br />
       <Button onClick={resetQuiz}>Reset</Button>
-      <Button onClick={handleNextQuestion}>Next question</Button>
+      <Button onClick={handleNextQuestion}>
+        {state.currentQuestion < state.totalQuestions
+          ? "Next Question"
+          : "End Quiz"}
+      </Button>
     </div>
   );
 }
