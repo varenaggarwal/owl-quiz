@@ -5,21 +5,23 @@ import { useQuizState } from "../contexts/quizStateContext";
 import { Header } from "../components/Header";
 import { Button } from "@chakra-ui/button";
 import { ArrowRightIcon } from "@chakra-ui/icons";
+import { useNavigate } from "react-router-dom";
 
 export function Quiz() {
   const { state, dispatch } = useQuizState();
+  const navigate = useNavigate();
+
+  const startQuiz = () => {
+    navigate(`/quiz/${state.currentQuestion}`);
+  };
 
   return (
     <div>
       <Header />
       <SimpleGrid>
-        <h1>Quiz</h1>
-        <h2>{tennisQuiz.quizName}</h2>
-        {tennisQuiz.questions.map((question) => (
-          <div>{/* <QuestionAsker currentQuestion={question} /> */}</div>
-        ))}
-        <Button colorScheme="blue">
-          <span>Next</span>
+        <h1>I want to learn...</h1>
+        <Button colorScheme="blue" onClick={startQuiz}>
+          <span>{tennisQuiz.quizName}</span>
           <span>
             <ArrowRightIcon />
           </span>
