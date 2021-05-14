@@ -3,10 +3,11 @@ import { quizReducer } from "../reducers/quizReducer";
 import { tennisQuiz } from "../data/tennisQuiz";
 
 const initialState: QuizStateType = {
-  score: 0,
-  currentQuestion: 1,
+  quizName: tennisQuiz.quizName,
   totalQuestions: tennisQuiz.questions.length,
   status: "READY_TO_START",
+  currentQuestion: 1,
+  score: 0,
 };
 
 type Context = {

@@ -9,18 +9,22 @@ const tennisQuiz: Quiz = {
       negativePoint: 2,
       options: [
         {
+          id: 1,
           text: "Even Stevens",
           isRight: false,
         },
         {
+          id: 2,
           text: "Equals",
           isRight: false,
         },
         {
+          id: 3,
           text: "Draw",
           isRight: false,
         },
         {
+          id: 4,
           text: "Deuce",
           isRight: true,
         },
@@ -34,10 +38,12 @@ const tennisQuiz: Quiz = {
       negativePoint: 22,
       options: [
         {
+          id: 1,
           text: "getting trained as master of the mystic arts",
           isRight: false,
         },
         {
+          id: 2,
           text: "performing surgery as a real doctor",
           isRight: true,
         },
@@ -49,10 +55,12 @@ const tennisQuiz: Quiz = {
       points: 5,
       options: [
         {
+          id: 1,
           text: "Clint",
           isRight: false,
         },
         {
+          id: 2,
           text: "Vision",
           isRight: true,
         },

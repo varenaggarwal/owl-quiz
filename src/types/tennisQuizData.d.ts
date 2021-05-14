@@ -1,4 +1,5 @@
 type Option = {
+  id: number;
   /**
    * Text to show the player
    */

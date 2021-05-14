@@ -12,21 +12,21 @@ export function Quiz() {
   const navigate = useNavigate();
 
   const startQuiz = () => {
-    navigate(`/quiz/${state.currentQuestion}`);
+    navigate(`/quiz/${state.quizName}`);
   };
 
   return (
     <div>
-      <Header />
-      <SimpleGrid>
-        <h1>I want to learn...</h1>
-        <Button colorScheme="blue" onClick={startQuiz}>
-          <span>{tennisQuiz.quizName}</span>
-          <span>
-            <ArrowRightIcon />
-          </span>
-        </Button>
-      </SimpleGrid>
+      {/* <Header /> */}
+      {/* <SimpleGrid> */}
+      <h1>I want to learn...</h1>
+      <Button colorScheme="blue" onClick={startQuiz}>
+        <span>{tennisQuiz.quizName}</span>
+        <span>
+          <ArrowRightIcon />
+        </span>
+      </Button>
+      {/* </SimpleGrid> */}
     </div>
   );
 }

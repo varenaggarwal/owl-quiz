@@ -5,4 +5,5 @@ type QuizStateType = {
   currentQuestion: number;
   totalQuestions: number;
   status: QuizStatus;
+  quizName: string;
 };
