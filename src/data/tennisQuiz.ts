@@ -35,7 +35,7 @@ const tennisQuiz: Quiz = {
       question:
         "What was Dr. Strange doing during the fight of New York in 2012?",
       points: 15,
-      negativePoint: 22,
+      negativePoint: 2,
       options: [
         {
           id: 1,

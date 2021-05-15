@@ -20,11 +20,12 @@ export function Quiz() {
       {/* <Header /> */}
       {/* <SimpleGrid> */}
       <h1>I want to learn...</h1>
-      <Button colorScheme="blue" onClick={startQuiz}>
-        <span>{tennisQuiz.quizName}</span>
-        <span>
-          <ArrowRightIcon />
-        </span>
+      <Button
+        rightIcon={<ArrowRightIcon />}
+        colorScheme="blue"
+        onClick={startQuiz}
+      >
+        {tennisQuiz.quizName}
       </Button>
       {/* </SimpleGrid> */}
     </div>

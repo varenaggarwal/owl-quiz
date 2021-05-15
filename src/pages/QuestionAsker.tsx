@@ -1,11 +1,12 @@
 import { Button } from "@chakra-ui/button";
-import { Box, SimpleGrid } from "@chakra-ui/layout";
+import { Box, SimpleGrid, Text } from "@chakra-ui/layout";
 import { tennisQuiz } from "../data/tennisQuiz";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
+import { ConfirmationDialog } from "../components/ConfirmationDialog";
 
 export function QuestionAsker() {
   const [isAnswered, setIsAnswered] = useState<Boolean>(false);
@@ -13,6 +14,9 @@ export function QuestionAsker() {
   const { state, dispatch } = useQuizState();
   const toast = useToast();
   const navigate = useNavigate();
+
+  const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
+  const onCloseAlert = () => setIsAlertOpen(false);
 
   const getQuestion = (questions: Question[], questionNumber) => {
     return questions.find(
@@ -44,22 +48,39 @@ export function QuestionAsker() {
   };
 
   const resetQuiz = () => {
+    setIsAlertOpen(true);
+  };
+
+  const onResetAlertYes = () => {
     setIsAnswered(false);
     setSelectedOption(null);
     dispatch({ type: "RESET_QUIZ" });
+    setIsAlertOpen(false);
   };
 
   const judgeAnswer = (clickedOption: Option) => {
     // show the answer is right or not right
     if (!isAnswered) {
+      const isCorrectAnswer = clickedOption.isRight;
+      toast({
+        title: isCorrectAnswer ? "Correct answer!" : "Wrong answer!",
+        status: isCorrectAnswer ? "success" : "error",
+        isClosable: true,
+      });
       setIsAnswered(true);
       setSelectedOption(clickedOption);
+      // update score
       dispatch({
         type: "UPDATE_SCORE",
         payload: { currentQuestion, selectedOption: clickedOption },
       });
+    } else {
+      toast({
+        title: "Already answered",
+        status: "warning",
+        isClosable: false,
+      });
     }
-    // update score // calculate the score
   };
 
   const optionStyle = (optionId) => {
@@ -77,15 +98,16 @@ export function QuestionAsker() {
   return (
     <div>
       <Header />
+      <ConfirmationDialog
+        isOpen={isAlertOpen}
+        onClose={onCloseAlert}
+        onYes={onResetAlertYes}
+      />
       <Box colour="blue" borderWidth="1px" borderRadius="lg" overflow="hidden">
         <Heading as="h2" size="lg">
           {currentQuestion.question}
         </Heading>
-        <h1>Points: {currentQuestion.points}</h1>
-        <h1>
-          NegativePoints:
-          {currentQuestion.negativePoint ? currentQuestion.negativePoint : 0}
-        </h1>
+        <Text>Points: {currentQuestion.points}</Text>
       </Box>
 
       <SimpleGrid columns={2} spacing="1rem">
