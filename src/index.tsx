@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QuizStateProvider } from "./contexts/quizStateContext";
+import { BrowserRouter as Router } from "react-router-dom";
 
 const theme = extendTheme({
   fonts: {
@@ -17,7 +18,9 @@ ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
       <QuizStateProvider>
-        <App />
+        <Router>
+          <App />
+        </Router>
       </QuizStateProvider>
     </ChakraProvider>
   </React.StrictMode>,

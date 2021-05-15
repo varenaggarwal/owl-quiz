@@ -15,7 +15,7 @@ type Context = {
   dispatch: any;
 };
 
-const QuizState = createContext<Context | null>(null);
+const QuizState = createContext<any>(null);
 
 function QuizStateProvider({ children }: any) {
   const [state, dispatch] = useReducer(quizReducer, initialState);

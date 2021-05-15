@@ -14,7 +14,7 @@ export function ConfirmationDialog({
   onClose,
   onYes,
 }: ConfirmationDialogProps) {
-  const cancelAlertRef = useRef();
+  const cancelAlertRef = useRef<any>();
 
   return (
     <>

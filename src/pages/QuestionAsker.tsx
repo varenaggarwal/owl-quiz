@@ -18,10 +18,8 @@ export function QuestionAsker() {
   const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
   const onCloseAlert = () => setIsAlertOpen(false);
 
-  const getQuestion = (questions: Question[], questionNumber) => {
-    return questions.find(
-      (question) => question.id === parseInt(questionNumber)
-    );
+  const getQuestion = (questions: Question[], questionNumber: number) => {
+    return questions.find((question) => question.id === questionNumber);
   };
 
   const currentQuestion = getQuestion(
@@ -78,16 +76,16 @@ export function QuestionAsker() {
       toast({
         title: "Already answered",
         status: "warning",
-        isClosable: false,
+        isClosable: true,
       });
     }
   };
 
-  const optionStyle = (optionId) => {
+  const optionStyle = (optionId: number) => {
     if (!isAnswered) {
       return "blue";
     } else {
-      if (optionId === selectedOption.id) {
+      if (selectedOption && optionId === selectedOption.id) {
         return selectedOption.isRight ? "green" : "red";
       } else {
         return "blue";
@@ -105,13 +103,13 @@ export function QuestionAsker() {
       />
       <Box colour="blue" borderWidth="1px" borderRadius="lg" overflow="hidden">
         <Heading as="h2" size="lg">
-          {currentQuestion.question}
+          {currentQuestion?.question}
         </Heading>
-        <Text>Points: {currentQuestion.points}</Text>
+        <Text>Points: {currentQuestion?.points}</Text>
       </Box>
 
       <SimpleGrid columns={2} spacing="1rem">
-        {currentQuestion.options.map((currentOption) => (
+        {currentQuestion?.options.map((currentOption) => (
           <Button
             key={currentOption.id}
             onClick={() => judgeAnswer(currentOption)}
