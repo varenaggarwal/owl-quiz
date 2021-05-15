@@ -12,6 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router";
+import { Logo } from "./Logo";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -21,9 +23,11 @@ export default function Navbar() {
 
   const getNavLinks = () => {
     return (
-      <Button variant="ghost " onClick={() => navigate(`/quiz`)}>
-        Home
-      </Button>
+      <>
+        {/* <Button variant="ghost " onClick={() => navigate(`/quiz`)}>
+          Home
+        </Button> */}
+      </>
     );
   };
 
@@ -39,7 +43,11 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={"center"}>
-            <Box>Logo</Box>
+            <Box>
+              <Link to="/">
+                <Logo />
+              </Link>
+            </Box>
             <HStack
               as={"nav"}
               spacing={4}
