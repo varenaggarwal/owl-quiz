@@ -14,6 +14,8 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router";
 import { Logo } from "./Logo";
 import { Link } from "react-router-dom";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { FaSun } from "react-icons/fa";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,11 +59,20 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            <Switch
+            {/* <Switch
               color="green"
               isChecked={isDark}
               onChange={toggleColorMode}
+            /> */}
+            <IconButton
+              variant="ghost"
+              // colorScheme="blue"
+              aria-label="Toggle Dark Mode"
+              fontSize="large"
+              icon={isDark ? <FaSun /> : <MoonIcon />}
+              onClick={toggleColorMode}
             />
+            {/* {isDark ? <SunIcon /> : <MoonIcon />} */}
           </Flex>
         </Flex>
 
