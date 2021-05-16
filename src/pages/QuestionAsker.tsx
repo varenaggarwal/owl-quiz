@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Box, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Box, Divider, Flex, SimpleGrid, Text } from "@chakra-ui/layout";
 import { tennisQuiz } from "../data/tennisQuiz";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
@@ -7,15 +7,17 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
 import { ConfirmationDialog } from "../components/ConfirmationDialog";
+import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 export function QuestionAsker() {
-  const [isAnswered, setIsAnswered] = useState<Boolean>(false);
+  const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const { state, dispatch } = useQuizState();
+  const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
+
   const toast = useToast();
   const navigate = useNavigate();
 
-  const [isAlertOpen, setIsAlertOpen] = useState<boolean>(false);
   const onCloseAlert = () => setIsAlertOpen(false);
 
   const getQuestion = (questions: Question[], questionNumber: number) => {
@@ -102,38 +104,66 @@ export function QuestionAsker() {
   };
 
   return (
-    <div>
+    <>
       <Header />
       <ConfirmationDialog
         isOpen={isAlertOpen}
         onClose={onCloseAlert}
         onYes={onResetAlertYes}
       />
-      <Box colour="blue" borderWidth="1px" borderRadius="lg" overflow="hidden">
-        <Heading as="h2" size="lg">
-          {currentQuestion?.question}
-        </Heading>
-        <Text>Points: {currentQuestion?.points}</Text>
-      </Box>
+      <Flex flexDirection="column" justify="center" padding="1rem">
+        <Box
+          colour="blue"
+          borderWidth="2px"
+          borderRadius="lg"
+          overflow="hidden"
+          padding="1rem"
+          shadow="base"
+        >
+          <Heading as="h2" size="lg">
+            {currentQuestion?.question}
+          </Heading>
 
-      <SimpleGrid columns={2} spacing="1rem">
-        {currentQuestion?.options.map((currentOption) => (
-          <Button
-            key={currentOption.id}
-            onClick={() => judgeAnswer(currentOption)}
-            colorScheme={optionStyle(currentOption.id)}
-          >
-            {currentOption.text}
-          </Button>
-        ))}
-      </SimpleGrid>
-      <br />
-      <Button onClick={resetQuiz}>Reset</Button>
-      <Button onClick={handleNextQuestion}>
-        {state.currentQuestion < state.totalQuestions
-          ? "Next Question"
-          : "End Quiz"}
-      </Button>
-    </div>
+          <Text align={"right"} fontStyle="italic">
+            Points: {currentQuestion?.points}
+          </Text>
+          <Divider />
+          <Flex flexDirection={"column"}>
+            {currentQuestion?.options.map((currentOption) => (
+              <Button
+                key={currentOption.id}
+                onClick={() => judgeAnswer(currentOption)}
+                colorScheme={optionStyle(currentOption.id)}
+                marginTop="1rem"
+              >
+                {currentOption.text}
+              </Button>
+            ))}
+          </Flex>
+        </Box>
+
+        {/* <SimpleGrid columns={2} spacing="1rem">
+          {currentQuestion?.options.map((currentOption) => (
+            <Button
+              key={currentOption.id}
+              onClick={() => judgeAnswer(currentOption)}
+              colorScheme={optionStyle(currentOption.id)}
+            >
+              {currentOption.text}
+            </Button>
+          ))}
+        </SimpleGrid> */}
+        <br />
+        <Button
+          isActive={isAnswered ? true : false}
+          onClick={handleNextQuestion}
+        >
+          {state.currentQuestion < state.totalQuestions
+            ? "Next Question"
+            : "End Quiz"}
+        </Button>
+        <Button onClick={resetQuiz}>Reset</Button>
+      </Flex>
+    </>
   );
 }

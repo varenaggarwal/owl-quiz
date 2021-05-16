@@ -1,4 +1,5 @@
 import { Button } from "@chakra-ui/button";
+import { Heading } from "@chakra-ui/layout";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +23,7 @@ export function Result() {
 
   return (
     <div>
-      <h1>Result</h1>
+      <Heading as={"h1"}>Result</Heading>
       <CircularProgress value={resultScorePercentage} size="120px">
         <CircularProgressLabel>{resultScorePercentage}%</CircularProgressLabel>
       </CircularProgress>

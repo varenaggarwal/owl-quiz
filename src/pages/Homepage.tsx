@@ -68,6 +68,7 @@ export function Homepage() {
             bg={"blue.400"}
             _hover={{ bg: "blue.500" }}
             onClick={startQuiz}
+            fontSize={"large"}
           >
             {tennisQuiz.quizName}
           </Button>

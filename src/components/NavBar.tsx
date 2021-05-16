@@ -59,20 +59,13 @@ export default function Navbar() {
             </HStack>
           </HStack>
           <Flex alignItems={"center"}>
-            {/* <Switch
-              color="green"
-              isChecked={isDark}
-              onChange={toggleColorMode}
-            /> */}
             <IconButton
               variant="ghost"
-              // colorScheme="blue"
               aria-label="Toggle Dark Mode"
               fontSize="large"
               icon={isDark ? <FaSun /> : <MoonIcon />}
               onClick={toggleColorMode}
             />
-            {/* {isDark ? <SunIcon /> : <MoonIcon />} */}
           </Flex>
         </Flex>
 
