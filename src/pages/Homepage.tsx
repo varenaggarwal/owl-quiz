@@ -56,7 +56,8 @@ export function Homepage() {
         <Text color={"gray.500"} maxW={"3xl"}>
           Never miss a meeting. Never be late for one too. Keep track of your
           meetings and receive smart reminders in appropriate times. Read your
-          smart “Daily Agenda” every morning.
+          smart “Daily Agenda” every morning. Never forget to your learning Keep
+          track of your learning for challenges
         </Text>
         <Stack spacing={6} direction={"row"}>
           <Button

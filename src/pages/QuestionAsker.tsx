@@ -41,7 +41,15 @@ export function QuestionAsker() {
         });
       }
     } else {
-      navigate(`/quiz/${state.quizName}/result`);
+      if (isAnswered) {
+        navigate(`/quiz/${state.quizName}/result`);
+      } else {
+        toast({
+          title: "Please answer the Question",
+          status: "warning",
+          isClosable: true,
+        });
+      }
     }
   };
 
