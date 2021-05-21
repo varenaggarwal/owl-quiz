@@ -7,7 +7,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { SocialButton } from "./SocialButton";
 import { Logo } from "../Logo";
 
@@ -32,14 +32,23 @@ export function Footer() {
         </div>
         <Text>Made with &lt;/&gt; by Varen Aggarwal</Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"#"}>
+          <SocialButton
+            label={"Twitter"}
+            href={"https://twitter.com/varenaggarwal"}
+          >
             <FaTwitter />
           </SocialButton>
-          <SocialButton label={"YouTube"} href={"#"}>
-            <FaYoutube />
+          <SocialButton
+            label={"LinkedIn"}
+            href={"https://in.linkedin.com/in/varenaggarwal"}
+          >
+            <FaLinkedin />
           </SocialButton>
-          <SocialButton label={"Instagram"} href={"#"}>
-            <FaInstagram />
+          <SocialButton
+            label={"Github"}
+            href={"https://github.com/varenaggarwal"}
+          >
+            <FaGithub />
           </SocialButton>
         </Stack>
       </Container>

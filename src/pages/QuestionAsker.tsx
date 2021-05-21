@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Divider, Flex, SimpleGrid, Text, Link } from "@chakra-ui/layout";
+import { Box, Divider, Flex, SimpleGrid, Text } from "@chakra-ui/layout";
 import { tennisQuiz } from "../data/tennisQuiz";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Heading, Image, useToast } from "@chakra-ui/react";
+import { Heading, useToast } from "@chakra-ui/react";
 import { ConfirmationDialog } from "../components/ConfirmationDialog";
 import { ArrowForwardIcon } from "@chakra-ui/icons";
 
@@ -17,6 +17,10 @@ export function QuestionAsker() {
 
   const toast = useToast();
   const navigate = useNavigate();
+
+  const toastIdPleaseAns = "toastIdPleaseAns";
+  const toaseIdAlreadyAnswered = "toaseIdAlreadyAnswered";
+  // const toastPleaseAnsId = "toastPleaseAns"
 
   const onCloseAlert = () => setIsAlertOpen(false);
 
@@ -36,21 +40,29 @@ export function QuestionAsker() {
         setSelectedOption(null);
         dispatch({ type: "NEXT_QUESTION" });
       } else {
-        toast({
-          title: "Please answer the Question",
-          status: "warning",
-          isClosable: true,
-        });
+        toast.closeAll();
+        if (!toast.isActive(toastIdPleaseAns)) {
+          toast({
+            id: toastIdPleaseAns,
+            title: "Please answer the Question",
+            status: "warning",
+            isClosable: true,
+          });
+        }
       }
     } else {
       if (isAnswered) {
         navigate(`/quiz/${state.quizName}/result`);
       } else {
-        toast({
-          title: "Please answer the Question",
-          status: "warning",
-          isClosable: true,
-        });
+        if (!toast.isActive(toastIdPleaseAns)) {
+          toast.closeAll();
+          toast({
+            id: toastIdPleaseAns,
+            title: "Please answer the Question",
+            status: "warning",
+            isClosable: true,
+          });
+        }
       }
     }
   };
@@ -70,6 +82,7 @@ export function QuestionAsker() {
     // show the answer is right or not right
     if (!isAnswered) {
       const isCorrectAnswer = clickedOption.isRight;
+      toast.closeAll();
       toast({
         title: isCorrectAnswer ? "Correct answer!" : "Wrong answer!",
         status: isCorrectAnswer ? "success" : "error",
@@ -83,11 +96,15 @@ export function QuestionAsker() {
         payload: { currentQuestion, selectedOption: clickedOption },
       });
     } else {
-      toast({
-        title: "Already answered",
-        status: "warning",
-        isClosable: true,
-      });
+      if (!toast.isActive(toaseIdAlreadyAnswered)) {
+        toast.closeAll();
+        toast({
+          id: toaseIdAlreadyAnswered,
+          title: "Already answered",
+          status: "warning",
+          isClosable: true,
+        });
+      }
     }
   };
 
@@ -164,54 +181,6 @@ export function QuestionAsker() {
         </Button>
         <Button onClick={resetQuiz}>Reset</Button>
       </Flex>
-      <Box p={4} display={{ md: "flex" }}>
-        <Box flexShrink={0}>
-          <Image
-            borderRadius="lg"
-            width={{ md: 40 }}
-            src="https://bit.ly/2jYM25F"
-            alt="Woman paying for a purchase"
-          />
-        </Box>
-        <Box mt={{ base: 4, md: 0 }} ml={{ md: 6 }}>
-          <Text
-            fontWeight="bold"
-            textTransform="uppercase"
-            fontSize="sm"
-            letterSpacing="wide"
-            color="teal.600"
-          >
-            Points: {currentQuestion?.points}
-          </Text>
-          {/* <Link
-            mt={1}
-            display="block"
-            fontSize="lg"
-            lineHeight="normal"
-            fontWeight="semibold"
-            href="#"
-          >
-            Finding customers for your new business
-          </Link> */}
-          <Heading as="h2" size="lg">
-            {currentQuestion?.question}
-          </Heading>
-          {/* <Text mt={2} color="gray.500">
-            Getting a new business off the ground is a lot of hard work. Here
-            are five ideas you can use to find your first customers.
-          </Text> */}
-          {currentQuestion?.options.map((currentOption) => (
-            <Button
-              key={currentOption.id}
-              onClick={() => judgeAnswer(currentOption)}
-              colorScheme={optionStyle(currentOption.id)}
-              marginTop="1rem"
-            >
-              {currentOption.text}
-            </Button>
-          ))}
-        </Box>
-      </Box>
     </>
   );
 }
