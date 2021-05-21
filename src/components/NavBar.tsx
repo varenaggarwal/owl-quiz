@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router";
-import { Logo } from "./Logo";
+import { Logo } from "../components/Logo";
 import { Link } from "react-router-dom";
 import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 import { FaSun } from "react-icons/fa";
