@@ -2,13 +2,12 @@ import {
   Box,
   chakra,
   Container,
-  Link,
   Stack,
   Text,
   useColorModeValue,
-  VisuallyHidden,
+  VisuallyHidden
 } from "@chakra-ui/react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { ReactNode } from "react";
 
 const Logo = (props: any) => {
@@ -34,7 +33,7 @@ const Logo = (props: any) => {
 const SocialButton = ({
   children,
   label,
-  href,
+  href
 }: {
   children: ReactNode;
   label: string;
@@ -54,7 +53,7 @@ const SocialButton = ({
       justifyContent={"center"}
       transition={"background 0.3s ease"}
       _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200")
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -63,12 +62,9 @@ const SocialButton = ({
   );
 };
 
-export default function SmallWithLogoLeft() {
+export default function Footer() {
   return (
     <Box
-      //   position="fixed"
-      //   bottom={0}
-      //   width={"100vw"}
       bg={useColorModeValue("gray.100", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
@@ -82,16 +78,25 @@ export default function SmallWithLogoLeft() {
         align={{ base: "center", md: "center" }}
       >
         <Logo />
-        <Text>© 2020 Chakra Templates. All rights reserved</Text>
+        <Text>Made with &lt;/&gt; by Varen Aggarwal</Text>
         <Stack direction={"row"} spacing={6}>
-          <SocialButton label={"Twitter"} href={"#"}>
+          <SocialButton
+            label={"Twitter"}
+            href={"https://twitter.com/varenaggarwal"}
+          >
             <FaTwitter />
           </SocialButton>
-          <SocialButton label={"YouTube"} href={"#"}>
-            <FaYoutube />
+          <SocialButton
+            label={"LinkedIn"}
+            href={"https://in.linkedin.com/in/varenaggarwal"}
+          >
+            <FaLinkedin />
           </SocialButton>
-          <SocialButton label={"Instagram"} href={"#"}>
-            <FaInstagram />
+          <SocialButton
+            label={"Github"}
+            href={"https://github.com/varenaggarwal"}
+          >
+            <FaGithub />
           </SocialButton>
         </Stack>
       </Container>

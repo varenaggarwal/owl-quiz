@@ -9,7 +9,10 @@ import { tennisQuiz } from "../data/tennisQuiz";
 export function Result() {
   const { state, dispatch } = useQuizState();
   const totalScore = 100;
-  const resultScorePercentage = Math.ceil((state.score / totalScore) * 100);
+  const resultScorePercentage = Math.max(
+    0,
+    Math.ceil((state.score / totalScore) * 100)
+  );
   const navigate = useNavigate();
   const quizName = tennisQuiz.quizName;
 

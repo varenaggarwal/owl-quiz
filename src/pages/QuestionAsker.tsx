@@ -18,6 +18,10 @@ export function QuestionAsker() {
   const toast = useToast();
   const navigate = useNavigate();
 
+  const toastIdPleaseAns = "toastIdPleaseAns";
+  const toaseIdAlreadyAnswered = "toaseIdAlreadyAnswered";
+  // const toastPleaseAnsId = "toastPleaseAns"
+
   const onCloseAlert = () => setIsAlertOpen(false);
 
   const getQuestion = (questions: Question[], questionNumber: number) => {
@@ -36,21 +40,29 @@ export function QuestionAsker() {
         setSelectedOption(null);
         dispatch({ type: "NEXT_QUESTION" });
       } else {
-        toast({
-          title: "Please answer the Question",
-          status: "warning",
-          isClosable: true,
-        });
+        toast.closeAll();
+        if (!toast.isActive(toastIdPleaseAns)) {
+          toast({
+            id: toastIdPleaseAns,
+            title: "Please answer the Question",
+            status: "warning",
+            isClosable: true
+          });
+        }
       }
     } else {
       if (isAnswered) {
         navigate(`/quiz/${state.quizName}/result`);
       } else {
-        toast({
-          title: "Please answer the Question",
-          status: "warning",
-          isClosable: true,
-        });
+        if (!toast.isActive(toastIdPleaseAns)) {
+          toast.closeAll();
+          toast({
+            id: toastIdPleaseAns,
+            title: "Please answer the Question",
+            status: "warning",
+            isClosable: true
+          });
+        }
       }
     }
   };
@@ -70,24 +82,29 @@ export function QuestionAsker() {
     // show the answer is right or not right
     if (!isAnswered) {
       const isCorrectAnswer = clickedOption.isRight;
+      toast.closeAll();
       toast({
         title: isCorrectAnswer ? "Correct answer!" : "Wrong answer!",
         status: isCorrectAnswer ? "success" : "error",
-        isClosable: true,
+        isClosable: true
       });
       setIsAnswered(true);
       setSelectedOption(clickedOption);
       // update score
       dispatch({
         type: "UPDATE_SCORE",
-        payload: { currentQuestion, selectedOption: clickedOption },
+        payload: { currentQuestion, selectedOption: clickedOption }
       });
     } else {
-      toast({
-        title: "Already answered",
-        status: "warning",
-        isClosable: true,
-      });
+      if (!toast.isActive(toaseIdAlreadyAnswered)) {
+        toast.closeAll();
+        toast({
+          id: toaseIdAlreadyAnswered,
+          title: "Already answered",
+          status: "warning",
+          isClosable: true
+        });
+      }
     }
   };
 

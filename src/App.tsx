@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { QuestionAsker } from "./pages/QuestionAsker";
 import { Result } from "./pages/Result";
 import Navbar from "./components/NavBar";
-import SmallWithLogoLeft from "./components/Footer";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="//quiz/:quizName/result" element={<Result />} />
         <Route path="/quiz/:quizName" element={<QuestionAsker />} />
       </Routes>
-      <SmallWithLogoLeft />
+      <Footer />
     </div>
   );
 }
