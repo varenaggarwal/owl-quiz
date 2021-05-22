@@ -1,6 +1,6 @@
 import { SimpleGrid } from "@chakra-ui/layout";
 import { QuestionAsker } from "./QuestionAsker";
-import { tennisQuiz } from "../data/tennisQuiz";
+import { tennisQuiz } from "../data/quizessDB";
 import { useQuizState } from "../contexts/quizStateContext";
 import { Header } from "../components/Header";
 import { Button } from "@chakra-ui/button";

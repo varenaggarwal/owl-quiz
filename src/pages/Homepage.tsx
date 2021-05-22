@@ -25,7 +25,7 @@ import {
 } from "@chakra-ui/react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { tennisQuiz } from "../data/tennisQuiz";
+import { tennisQuiz } from "../data/quizessDB";
 
 export function Homepage() {
   const navigate = useNavigate();

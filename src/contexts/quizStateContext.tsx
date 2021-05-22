@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
 import { quizReducer } from "../reducers/quizReducer";
-import { tennisQuiz } from "../data/tennisQuiz";
+import { tennisQuiz } from "../data/quizessDB";
 
 const initialState: QuizStateType = {
   quizName: tennisQuiz.quizName,

@@ -4,7 +4,7 @@ import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuizState } from "../contexts/quizStateContext";
-import { tennisQuiz } from "../data/tennisQuiz";
+import { tennisQuiz } from "../data/quizessDB";
 
 export function Result() {
   const { state, dispatch } = useQuizState();

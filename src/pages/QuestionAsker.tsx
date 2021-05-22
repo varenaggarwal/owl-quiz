@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Flex, SimpleGrid, Text } from "@chakra-ui/layout";
-import { tennisQuiz } from "../data/tennisQuiz";
+import { tennisQuiz } from "../data/quizessDB";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useState } from "react";
