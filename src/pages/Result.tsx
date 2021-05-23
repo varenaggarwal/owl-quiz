@@ -1,7 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Heading } from "@chakra-ui/layout";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useQuizState } from "../contexts/quizStateContext";
 import { tennisQuiz } from "../data/quizessDB";

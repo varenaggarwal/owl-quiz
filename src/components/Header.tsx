@@ -1,6 +1,5 @@
 import { Progress } from "@chakra-ui/progress";
-import { Flex, SimpleGrid, Spacer, Text } from "@chakra-ui/react";
-import React from "react";
+import { Flex } from "@chakra-ui/react";
 import { useQuizState } from "../contexts/quizStateContext";
 import { Heading } from "@chakra-ui/react";
 

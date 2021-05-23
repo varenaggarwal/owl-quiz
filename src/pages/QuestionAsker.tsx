@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/button";
-import { Box, Divider, Flex, SimpleGrid, Text } from "@chakra-ui/layout";
+import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
 import { tennisQuiz } from "../data/quizessDB";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
 import { ConfirmationDialog } from "../components/ConfirmationDialog";
-import { ArrowForwardIcon } from "@chakra-ui/icons";
 
 export function QuestionAsker() {
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
