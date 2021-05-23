@@ -10,10 +10,10 @@ const initialState: QuizStateType = {
   score: 0,
 };
 
-type Context = {
-  state: QuizStateType;
-  dispatch: any;
-};
+// type Context = {
+//   state: QuizStateType;
+//   dispatch: any;
+// };
 
 const QuizState = createContext<any>(null);
 

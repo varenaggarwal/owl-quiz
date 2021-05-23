@@ -1,7 +1,5 @@
 import "./logo.css";
 import { useColorMode } from "@chakra-ui/color-mode";
-import { Image } from "@chakra-ui/image";
-import { Heading } from "@chakra-ui/layout";
 import owlImg from "../../assets/owl.png";
 import whiteOwlImg from "../../assets/white-owl.png";
 
@@ -13,7 +11,7 @@ export function Logo() {
   return (
     <>
       <div className="logo-img-container">
-        <img className="img-responsive" src={getImage()} />
+        <img className="img-responsive" alt="Logo" src={getImage()} />
       </div>
     </>
   );

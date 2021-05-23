@@ -5,7 +5,7 @@ import { ArrowRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
 
 export function Quiz() {
-  const { state, dispatch } = useQuizState();
+  const { state } = useQuizState();
   const navigate = useNavigate();
 
   const startQuiz = () => {

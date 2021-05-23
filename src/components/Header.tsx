@@ -4,7 +4,7 @@ import { useQuizState } from "../contexts/quizStateContext";
 import { Heading } from "@chakra-ui/react";
 
 export function Header() {
-  const { state, dispatch } = useQuizState();
+  const { state } = useQuizState();
   return (
     <div>
       <Flex flexDirection="column">

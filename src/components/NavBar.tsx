@@ -3,25 +3,21 @@ import {
   Flex,
   HStack,
   IconButton,
-  Button,
   useDisclosure,
   useColorModeValue,
   Stack,
-  Switch,
   useColorMode,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
-import { useNavigate } from "react-router";
 import { Logo } from "../components/Logo";
 import { Link } from "react-router-dom";
-import { SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { MoonIcon } from "@chakra-ui/icons";
 import { FaSun } from "react-icons/fa";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  const navigate = useNavigate();
 
   const getNavLinks = () => {
     return (

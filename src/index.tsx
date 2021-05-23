@@ -7,13 +7,6 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { QuizStateProvider } from "./contexts/quizStateContext";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const theme = extendTheme({
-  fonts: {
-    heading: "Roboto",
-    body: "Roboto",
-  },
-});
-
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
