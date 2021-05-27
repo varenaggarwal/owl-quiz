@@ -1,30 +1,29 @@
-import { tennisQuiz } from "../data/quizessDB";
-import { useQuizState } from "../contexts/quizStateContext";
 import { Button } from "@chakra-ui/button";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
+import { quizzesDB } from "../data/quizessDB";
+import { useQuizState } from "../contexts/quizStateContext";
 
 export function Quiz() {
-  const { state } = useQuizState();
   const navigate = useNavigate();
-
-  const startQuiz = () => {
-    navigate(`/quiz/${state.quizName}`);
+  const { state, dispatch } = useQuizState();
+  // setup Quiz
+  const startQuiz = (quizId: number, totalQuestions: number) => {
+    navigate(`/quiz/${quizId}`);
+    dispatch({ type: "START_QUIZ", payload: { quizId, totalQuestions } });
   };
 
   return (
     <div>
-      {/* <Header /> */}
-      {/* <SimpleGrid> */}
-      <h1>I want to learn...</h1>
-      <Button
-        rightIcon={<ArrowRightIcon />}
-        colorScheme="blue"
-        onClick={startQuiz}
-      >
-        {tennisQuiz.quizName}
-      </Button>
-      {/* </SimpleGrid> */}
+      {quizzesDB.quizzes.map((quiz) => (
+        <Button
+          rightIcon={<ArrowRightIcon />}
+          colorScheme="blue"
+          onClick={() => startQuiz(quiz.id, quiz.questions.length)}
+        >
+          {quiz.quizName}
+        </Button>
+      ))}
     </div>
   );
 }

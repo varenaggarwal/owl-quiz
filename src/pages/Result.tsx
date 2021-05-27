@@ -3,7 +3,6 @@ import { Heading } from "@chakra-ui/layout";
 import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
 import { useNavigate } from "react-router-dom";
 import { useQuizState } from "../contexts/quizStateContext";
-import { tennisQuiz } from "../data/quizessDB";
 
 export function Result() {
   const { state, dispatch } = useQuizState();
@@ -13,11 +12,11 @@ export function Result() {
     Math.ceil((state.score / totalScore) * 100)
   );
   const navigate = useNavigate();
-  const quizName = tennisQuiz.quizName;
+  // const quizName = tennisQuiz.quizName;
 
   const resetQuiz = () => {
     dispatch({ type: "RESET_QUIZ" });
-    navigate(`/quiz/${quizName}`);
+    // navigate(`/quiz/${quizName}`);
   };
   const exitQuiz = () => {
     navigate(`/`);

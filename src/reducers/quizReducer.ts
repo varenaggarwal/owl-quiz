@@ -22,6 +22,14 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
             ...state,
             score: state.score - negativePoint,
           };
+    case "START_QUIZ":
+      return {
+        ...state,
+        currentQuestion: 1,
+        score: 0,
+        totalQuestions: action.payload.totalQuestions,
+        quizName: action.payload.quizName,
+      };
 
     default:
       console.error("In the default case of the quizReducer");

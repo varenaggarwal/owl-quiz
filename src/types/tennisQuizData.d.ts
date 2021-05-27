@@ -20,6 +20,7 @@ type Question = {
 };
 
 type Quiz = {
+  id: number;
   quizName: string;
   playTime: string;
   questions: Question[];

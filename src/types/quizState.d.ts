@@ -1,9 +1,9 @@
-type QuizStatus = "READY_TO_START" | "INPROGRESS" | "ENDED";
+type QuizStatus = "READY_TO_START" | "IN_PROGRESS" | "ENDED" | null;
 
 type QuizStateType = {
   score: number;
   currentQuestion: number;
   totalQuestions: number;
-  status: QuizStatus;
-  quizName: string;
+  status: any;
+  quizName: string | null;
 };

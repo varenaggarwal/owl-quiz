@@ -8,14 +8,12 @@ import {
 } from "@chakra-ui/react";
 import { ArrowRightIcon } from "@chakra-ui/icons";
 import { useNavigate } from "react-router-dom";
-import { tennisQuiz } from "../data/quizessDB";
 
 export function Homepage() {
   const navigate = useNavigate();
-  const quizName = tennisQuiz.quizName;
 
   const startQuiz = () => {
-    navigate(`/quiz/${quizName}`);
+    navigate(`/quiz/`);
   };
 
   return (
@@ -50,7 +48,7 @@ export function Homepage() {
             onClick={startQuiz}
             fontSize={"large"}
           >
-            {tennisQuiz.quizName}
+            Are you up for the challenge?
           </Button>
         </Stack>
         <Flex w={"full"}></Flex>

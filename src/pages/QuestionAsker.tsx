@@ -1,6 +1,5 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
-import { tennisQuiz } from "../data/quizessDB";
 import { Header } from "../components/Header";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useState } from "react";
@@ -8,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
 import { ConfirmationDialog } from "../components/ConfirmationDialog";
 
-export function QuestionAsker() {
+export function QuestionAsker({ selectedQuiz }: any) {
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
   const { state, dispatch } = useQuizState();
@@ -17,20 +16,15 @@ export function QuestionAsker() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const toastIdPleaseAns = "toastIdPleaseAns";
-  const toaseIdAlreadyAnswered = "toaseIdAlreadyAnswered";
-  // const toastPleaseAnsId = "toastPleaseAns"
-
   const onCloseAlert = () => setIsAlertOpen(false);
 
-  const getQuestion = (questions: Question[], questionNumber: number) => {
-    return questions.find((question) => question.id === questionNumber);
+  const getQuestion = (selectedQuiz: Quiz, questionNumber: number) => {
+    return selectedQuiz.questions.find(
+      (question) => question.id === questionNumber
+    );
   };
 
-  const currentQuestion = getQuestion(
-    tennisQuiz.questions,
-    state.currentQuestion
-  );
+  const currentQuestion = getQuestion(selectedQuiz, state.currentQuestion);
 
   const handleNextQuestion = () => {
     if (state.currentQuestion < state.totalQuestions) {
@@ -40,28 +34,22 @@ export function QuestionAsker() {
         dispatch({ type: "NEXT_QUESTION" });
       } else {
         toast.closeAll();
-        if (!toast.isActive(toastIdPleaseAns)) {
-          toast({
-            id: toastIdPleaseAns,
-            title: "Please answer the Question",
-            status: "warning",
-            isClosable: true,
-          });
-        }
+        toast({
+          title: "Please answer the Question",
+          status: "warning",
+          isClosable: true,
+        });
       }
     } else {
       if (isAnswered) {
         navigate(`/quiz/${state.quizName}/result`);
       } else {
-        if (!toast.isActive(toastIdPleaseAns)) {
-          toast.closeAll();
-          toast({
-            id: toastIdPleaseAns,
-            title: "Please answer the Question",
-            status: "warning",
-            isClosable: true,
-          });
-        }
+        toast.closeAll();
+        toast({
+          title: "Please answer the Question",
+          status: "warning",
+          isClosable: true,
+        });
       }
     }
   };
@@ -95,15 +83,12 @@ export function QuestionAsker() {
         payload: { currentQuestion, selectedOption: clickedOption },
       });
     } else {
-      if (!toast.isActive(toaseIdAlreadyAnswered)) {
-        toast.closeAll();
-        toast({
-          id: toaseIdAlreadyAnswered,
-          title: "Already answered",
-          status: "warning",
-          isClosable: true,
-        });
-      }
+      toast.closeAll();
+      toast({
+        title: "Already answered",
+        status: "warning",
+        isClosable: true,
+      });
     }
   };
 

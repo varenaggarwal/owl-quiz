@@ -6,6 +6,7 @@ import { QuestionAsker } from "./pages/QuestionAsker";
 import { Result } from "./pages/Result";
 import Navbar from "./components/NavBar";
 import { Footer } from "./components/Footer";
+import { PlaySelectedQuiz } from "./pages/PlaySelectedQuiz";
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
         <Route path="//quiz/:quizName/result" element={<Result />} />
-        <Route path="/quiz/:quizName" element={<QuestionAsker />} />
       </Routes>
       <Footer />
     </div>
