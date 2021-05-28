@@ -1,10 +1,19 @@
 .App {
+  min-height: 100vh;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {

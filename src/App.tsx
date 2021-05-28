@@ -12,13 +12,17 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
-        <Route path="//quiz/:quizName/result" element={<Result />} />
-      </Routes>
-      <Footer />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
+          <Route path="//quiz/:quizName/result" element={<Result />} />
+        </Routes>
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }
