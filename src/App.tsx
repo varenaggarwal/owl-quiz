@@ -1,12 +1,12 @@
 import "./App.css";
-import { Homepage } from "./pages/Homepage";
-import { Quiz } from "./pages/Quiz";
+import { Homepage } from "./components/Homepage";
+import { SelectQuiz } from "./components/SelectQuiz";
 import { Route, Routes } from "react-router-dom";
-import { QuestionAsker } from "./pages/QuestionAsker";
-import { Result } from "./pages/Result";
+import { QuestionAsker } from "./components/PlayQuiz/QuestionAsker";
+import { Result } from "./components/Result";
 import Navbar from "./components/NavBar";
 import { Footer } from "./components/Footer";
-import { PlaySelectedQuiz } from "./pages/PlaySelectedQuiz";
+import { PlaySelectedQuiz } from "./components/PlayQuiz/PlaySelectedQuiz";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
       <div className="content">
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/quiz" element={<SelectQuiz />} />
           <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
           <Route path="//quiz/:quizName/result" element={<Result />} />
         </Routes>

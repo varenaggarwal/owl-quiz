@@ -1,6 +1,6 @@
 import { Progress } from "@chakra-ui/progress";
 import { Flex } from "@chakra-ui/react";
-import { useQuizState } from "../contexts/quizStateContext";
+import { useQuizState } from "../../contexts/quizStateContext";
 import { Heading } from "@chakra-ui/react";
 
 export function Header() {

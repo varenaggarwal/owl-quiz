@@ -1,5 +1,7 @@
 import { createContext, useReducer, useContext } from "react";
 import { quizReducer } from "../reducers/quizReducer";
+import { QuizStateContext } from "./quizStateContext.type";
+import { QuizStateType } from "./quizStateContext.type";
 
 const initialState: QuizStateType = {
   quizName: null,
@@ -9,12 +11,7 @@ const initialState: QuizStateType = {
   score: 0,
 };
 
-// type Context = {
-//   state: QuizStateType;
-//   dispatch: any;
-// };
-
-const QuizState = createContext(null);
+const QuizState = createContext<QuizStateContext>({} as QuizStateContext);
 
 function QuizStateProvider({ children }: any) {
   const [state, dispatch] = useReducer(quizReducer, initialState);

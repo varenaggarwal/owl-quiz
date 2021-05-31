@@ -1,7 +1,7 @@
 import { useParams } from "react-router";
 import { QuestionAsker } from "./QuestionAsker";
-import { quizzesDB } from "../data/quizessDB";
-import { Quizzes } from "../data/quizessDB.type";
+import { quizzesDB } from "../../data/quizessDB";
+import { Quizzes } from "../../data/quizessDB.type";
 
 export function PlaySelectedQuiz() {
   const { quizId } = useParams();

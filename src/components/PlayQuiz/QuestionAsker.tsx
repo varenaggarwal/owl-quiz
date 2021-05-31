@@ -1,11 +1,11 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
-import { Header } from "../components/Header";
-import { useQuizState } from "../contexts/quizStateContext";
+import { Header } from "./Header";
+import { useQuizState } from "../../contexts/quizStateContext";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
-import { ConfirmationDialog } from "../components/ConfirmationDialog";
+import { ConfirmationDialog } from "./ConfirmationDialog";
 
 export function QuestionAsker({ selectedQuiz }: any) {
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
@@ -78,10 +78,12 @@ export function QuestionAsker({ selectedQuiz }: any) {
       setIsAnswered(true);
       setSelectedOption(clickedOption);
       // update score
-      dispatch({
-        type: "UPDATE_SCORE",
-        payload: { currentQuestion, selectedOption: clickedOption },
-      });
+      if (currentQuestion) {
+        dispatch({
+          type: "UPDATE_SCORE",
+          payload: { currentQuestion, selectedOption: clickedOption },
+        });
+      }
     } else {
       toast.closeAll();
       toast({
@@ -142,18 +144,6 @@ export function QuestionAsker({ selectedQuiz }: any) {
             ))}
           </Flex>
         </Box>
-
-        {/* <SimpleGrid columns={2} spacing="1rem">
-          {currentQuestion?.options.map((currentOption) => (
-            <Button
-              key={currentOption.id}
-              onClick={() => judgeAnswer(currentOption)}
-              colorScheme={optionStyle(currentOption.id)}
-            >
-              {currentOption.text}
-            </Button>
-          ))}
-        </SimpleGrid> */}
         <br />
         <Button
           isActive={isAnswered ? true : false}

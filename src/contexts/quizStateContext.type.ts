@@ -7,3 +7,10 @@ type QuizStateType = {
   status: any;
   quizName: string | null;
 };
+
+type QuizStateContext = {
+  state: QuizStateType;
+  dispatch: (action: actionType) => void;
+};
+
+export type { QuizStateContext, QuizStatus, QuizStateType };

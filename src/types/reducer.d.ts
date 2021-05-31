@@ -5,7 +5,7 @@ type UpdateScorePayload = {
 
 type StartQuizPayload = {
   totalQuestions: number;
-  quizName: number;
+  quizId: number;
 };
 
 type actionType =

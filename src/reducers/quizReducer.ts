@@ -1,3 +1,5 @@
+import { QuizStateType } from "../contexts/quizStateContext.type";
+
 export const quizReducer = (state: QuizStateType, action: actionType) => {
   switch (action.type) {
     case "NEXT_QUESTION":
@@ -28,7 +30,6 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
         currentQuestion: 1,
         score: 0,
         totalQuestions: action.payload.totalQuestions,
-        quizName: action.payload.quizName,
       };
 
     default:
