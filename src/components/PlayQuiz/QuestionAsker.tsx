@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Heading, useToast } from "@chakra-ui/react";
 import { ConfirmationDialog } from "./ConfirmationDialog";
+import { Option, Quiz } from "../../data/quizessDB.type";
 
 export function QuestionAsker({ selectedQuiz }: any) {
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
@@ -42,7 +43,7 @@ export function QuestionAsker({ selectedQuiz }: any) {
       }
     } else {
       if (isAnswered) {
-        navigate(`/quiz/${state.quizName}/result`);
+        navigate(`/quiz/${selectedQuiz.id}/result`);
       } else {
         toast.closeAll();
         toast({
@@ -81,7 +82,17 @@ export function QuestionAsker({ selectedQuiz }: any) {
       if (currentQuestion) {
         dispatch({
           type: "UPDATE_SCORE",
-          payload: { currentQuestion, selectedOption: clickedOption },
+          payload: {
+            currentQuestion: currentQuestion,
+            selectedOption: clickedOption,
+          },
+        });
+        dispatch({
+          type: "SAVE_OPTION",
+          payload: {
+            questionId: currentQuestion.id,
+            optionId: clickedOption.id,
+          },
         });
       }
     } else {
@@ -108,6 +119,7 @@ export function QuestionAsker({ selectedQuiz }: any) {
 
   return (
     <>
+      {console.log({ state })}
       <Header />
       <ConfirmationDialog
         isOpen={isAlertOpen}

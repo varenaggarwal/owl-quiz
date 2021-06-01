@@ -9,6 +9,7 @@ const initialState: QuizStateType = {
   status: "READY_TO_START",
   currentQuestion: 1,
   score: 0,
+  selectedOption: [],
 };
 
 const QuizState = createContext<QuizStateContext>({} as QuizStateContext);

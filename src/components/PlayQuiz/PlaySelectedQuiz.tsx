@@ -16,7 +16,6 @@ export function PlaySelectedQuiz() {
 
   return (
     <>
-      {/* {console.log({ selectedQuiz })} */}
       <QuestionAsker selectedQuiz={selectedQuiz} />
     </>
   );

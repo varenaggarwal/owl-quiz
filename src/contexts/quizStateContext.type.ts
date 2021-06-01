@@ -1,4 +1,9 @@
-type QuizStatus = "READY_TO_START" | "IN_PROGRESS" | "ENDED" | null;
+type QuizStatus = "READY_TO_START" | "IN_PROGRESS" | "ENDED";
+
+type SelectedOptions = {
+  questionId: number;
+  selectedOptionId: number;
+};
 
 type QuizStateType = {
   score: number;
@@ -6,11 +11,12 @@ type QuizStateType = {
   totalQuestions: number;
   status: any;
   quizName: string | null;
+  selectedOption: any;
 };
 
 type QuizStateContext = {
   state: QuizStateType;
-  dispatch: (action: actionType) => void;
+  dispatch: any;
 };
 
 export type { QuizStateContext, QuizStatus, QuizStateType };

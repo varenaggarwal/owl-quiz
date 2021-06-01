@@ -8,6 +8,7 @@ import {
   AlertDialogFooter,
 } from "@chakra-ui/modal";
 import { useRef } from "react";
+import { ConfirmationDialogProps } from "./playQuiz.type";
 
 export function ConfirmationDialog({
   isOpen,

@@ -1,4 +1,5 @@
 import { QuizStateType } from "../contexts/quizStateContext.type";
+import { actionType } from "./quizReducer.type";
 
 export const quizReducer = (state: QuizStateType, action: actionType) => {
   switch (action.type) {
@@ -31,7 +32,17 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
         score: 0,
         totalQuestions: action.payload.totalQuestions,
       };
-
+    case "SAVE_OPTION":
+      return {
+        ...state,
+        selectedOption: [
+          ...state.selectedOption,
+          {
+            questionId: action.payload.questionId,
+            optionId: action.payload.optionId,
+          },
+        ],
+      };
     default:
       console.error("In the default case of the quizReducer");
       return state;

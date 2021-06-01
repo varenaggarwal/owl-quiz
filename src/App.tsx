@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Homepage />} />
           <Route path="/quiz" element={<SelectQuiz />} />
           <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
-          <Route path="//quiz/:quizName/result" element={<Result />} />
+          <Route path="//quiz/:quizId/result" element={<Result />} />
         </Routes>
       </div>
       <div className="footer">

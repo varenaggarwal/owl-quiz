@@ -3,3 +3,5 @@ type ConfirmationDialogProps = {
   onClose: () => void;
   onYes: () => void;
 };
+
+export type { ConfirmationDialogProps };
