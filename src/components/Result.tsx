@@ -4,7 +4,7 @@ import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
 import { useNavigate } from "react-router-dom";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useParams } from "react-router-dom";
-import { Quizzes } from "../data/quizessDB.type";
+import { Option, Question, Quizzes } from "../data/quizessDB.type";
 import { quizzesDB } from "../data/quizessDB";
 import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
 
@@ -24,14 +24,35 @@ export function Result() {
     Math.ceil((state.score / maxScore) * 100)
   );
 
-  // const quizName = tennisQuiz.quizName;
-
   const resetQuiz = () => {
     dispatch({ type: "RESET_QUIZ" });
   };
 
   const exitQuiz = () => {
     navigate(`/`);
+  };
+
+  const optionStyle = (optionId: number, question: Question) => {
+    const isOptionCorrect = (optionId: number, question: Question) => {
+      for (let currentOption of question.options) {
+        if (currentOption.id === optionId) {
+          return currentOption.isRight;
+        }
+      }
+      return false;
+    };
+
+    if (isOptionCorrect(optionId, question)) {
+      return "green";
+    }
+
+    // console.log(selectedOptionWrong(optionId, question));
+
+    // if (selectedOptionWrong(optionId, question)) {
+    //   return "red";
+    // }
+
+    return "blue";
   };
 
   return (
@@ -61,7 +82,11 @@ export function Result() {
           <Divider />
           <Flex flexDirection={"column"}>
             {question.options.map((currentOption) => (
-              <Button key={currentOption.id} marginTop="1rem">
+              <Button
+                colorScheme={optionStyle(currentOption.id, question)}
+                key={currentOption.id}
+                marginTop="1rem"
+              >
                 {currentOption.text}
               </Button>
             ))}
