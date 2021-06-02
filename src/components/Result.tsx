@@ -4,7 +4,7 @@ import { CircularProgress, CircularProgressLabel } from "@chakra-ui/progress";
 import { useNavigate } from "react-router-dom";
 import { useQuizState } from "../contexts/quizStateContext";
 import { useParams } from "react-router-dom";
-import { Option, Question, Quizzes } from "../data/quizessDB.type";
+import { Question, Quizzes } from "../data/quizessDB.type";
 import { quizzesDB } from "../data/quizessDB";
 import { Box, Divider, Flex, Text } from "@chakra-ui/layout";
 
@@ -42,17 +42,28 @@ export function Result() {
       return false;
     };
 
+    const isSelectedOptionWrong = (optionId: number, question: Question) => {
+      for (const currentSelectedOption of state.selectedOption) {
+        if (
+          currentSelectedOption.questionId === question.id &&
+          currentSelectedOption.optionId === optionId
+        ) {
+          console.log("This is the option I selected, optinId:", optionId);
+          return true;
+        }
+      }
+      return false;
+    };
+
     if (isOptionCorrect(optionId, question)) {
       return "green";
     }
 
-    // console.log(selectedOptionWrong(optionId, question));
+    if (isSelectedOptionWrong(optionId, question)) {
+      return "red";
+    }
 
-    // if (selectedOptionWrong(optionId, question)) {
-    //   return "red";
-    // }
-
-    return "blue";
+    return "gray";
   };
 
   return (
