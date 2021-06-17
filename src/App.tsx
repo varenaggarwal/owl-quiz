@@ -1,24 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { Homepage } from "./components/Homepage";
+import { SelectQuiz } from "./components/SelectQuiz";
+import { Route, Routes } from "react-router-dom";
+import { QuestionAsker } from "./components/PlayQuiz/QuestionAsker";
+import { Result } from "./components/Result";
+import Navbar from "./components/NavBar";
+import { Footer } from "./components/Footer";
+import { PlaySelectedQuiz } from "./components/PlayQuiz/PlaySelectedQuiz";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+      <div className="content">
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/quiz" element={<SelectQuiz />} />
+          <Route path="/quiz/:quizId" element={<PlaySelectedQuiz />} />
+          <Route path="//quiz/:quizId/result" element={<Result />} />
+        </Routes>
+      </div>
+      <div className="footer">
+        <Footer />
+      </div>
     </div>
   );
 }
