@@ -10,7 +10,14 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
         return state;
       }
     case "RESET_QUIZ":
-      return { ...state, currentQuestion: 1, score: 0 };
+      return {
+        ...state,
+        status: "READY_TO_START",
+        currentQuestion: 0,
+        score: 0,
+        selectedOption: [],
+        quizId: null,
+      };
 
     case "UPDATE_SCORE":
       const negativePoint = action.payload.currentQuestion.negativePoint
@@ -28,9 +35,12 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
     case "START_QUIZ":
       return {
         ...state,
+        status: "IN_PROGRESS",
         currentQuestion: 1,
         score: 0,
         totalQuestions: action.payload.totalQuestions,
+        quizId: action.payload.quizId,
+        selectedOption: [],
       };
     case "SAVE_OPTION":
       return {
@@ -42,6 +52,11 @@ export const quizReducer = (state: QuizStateType, action: actionType) => {
             optionId: action.payload.optionId,
           },
         ],
+      };
+    case "END_QUIZ":
+      return {
+        ...state,
+        status: "ENDED",
       };
     default:
       console.error("In the default case of the quizReducer");

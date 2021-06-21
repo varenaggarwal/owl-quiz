@@ -20,7 +20,8 @@ type actionType =
   | { type: "RESET_QUIZ" }
   | { type: "UPDATE_SCORE"; payload: UpdateScorePayload }
   | { type: "START_QUIZ"; payload: StartQuizPayload }
-  | { type: "SAVE_OPTION"; payload: SaveOptionsPayload };
+  | { type: "SAVE_OPTION"; payload: SaveOptionsPayload }
+  | { type: "END_QUIZ" };
 
 export type {
   UpdateScorePayload,

@@ -6,11 +6,11 @@ type SelectedOptions = {
 };
 
 type QuizStateType = {
+  quizId: number | null;
   score: number;
   currentQuestion: number;
   totalQuestions: number;
   status: any;
-  quizName: string | null;
   selectedOption: any;
 };
 

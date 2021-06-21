@@ -4,7 +4,7 @@ import { QuizStateContext } from "./quizStateContext.type";
 import { QuizStateType } from "./quizStateContext.type";
 
 const initialState: QuizStateType = {
-  quizName: null,
+  quizId: null,
   totalQuestions: 0,
   status: "READY_TO_START",
   currentQuestion: 1,
